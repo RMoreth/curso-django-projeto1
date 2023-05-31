@@ -6,11 +6,13 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("home 1")
+    return render(request, 'recipes/home.html', context={
+        'name': 'Luiz otavio',
+    })
 
 
 def contato(request):
-    return HttpResponse("Contato")
+    return render(request, 'temp/temp.html')
 
 
 def sobre(request):
