@@ -58,7 +58,7 @@ TEMPLATES = [
         'DIRS': [
 
             BASE_DIR / 'base_templates',
-            BASE_DIR / 'recipes' / 'templates_temp',
+           
         ],
         'APP_DIRS': True,
         'OPTIONS': {
