@@ -8,13 +8,13 @@ class RecipeModelTest(RecipeTestBase):
         self.recipe = self.make_recipe(title='a'*64)
         return super().setUp()
 
-    def make_recipe_no_default(self):
+    def make_recipe_no_default(self, slug_content='recipe-slug-02'):
         recipe = Recipe(
             category=self.make_category(name='Test Default Category'),
             author=self.make_author(username='newuser'),
             title='Recipe Title',
             description='Recipe Description',
-            slug='recipe-slug',
+            slug=slug_content,  # O slug da receita usará o valor de 'slug_content'
             preparation_time=10,
             preparation_time_unit='Minutos',
             servings=5,
@@ -60,3 +60,7 @@ class RecipeModelTest(RecipeTestBase):
             msg=f'Recipe string representation must be "{needed}"'
             f'but "{str(self.recipe)}" was received'
         )
+
+    def test_recipe_slug_name_is_unique(self):
+        with self.assertRaises(ValidationError):
+            self.make_recipe_no_default('recipe-slug')
